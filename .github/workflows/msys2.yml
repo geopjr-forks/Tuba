@@ -24,4 +24,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: tuba_windows_portable
-          path: tuba_windows_portable.zip
+          path: tuba_windows_portable/

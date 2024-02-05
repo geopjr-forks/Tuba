@@ -63,6 +63,7 @@ __windows_cleanup:
 	rm -f ${PREFIX}/share/glib-2.0/schemas/*.xml
 	rm -rf ${PREFIX}/share/icons/hicolor/scalable/actions/
 	find $(PREFIX)/share/icons/ -name *.*.*.svg -not -name *geopjr* -delete
+	find $(PREFIX)/lib/gdk-pixbuf-2.0/2.10.0/loaders -name *.dll.a -not -name *geopjr* -delete
 	find $(PREFIX)/share/icons/ -name mimetypes -type d  -exec rm -r {} + -depth
 	find $(PREFIX)/share/icons/hicolor/ -path */apps/*.png -not -name *geopjr* -delete
 	find $(PREFIX) -type d -empty -delete
