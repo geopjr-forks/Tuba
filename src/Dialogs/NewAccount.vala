@@ -5,9 +5,15 @@ public class Tuba.Dialogs.NewAccount: Adw.Window {
 
 	const string SCOPES = "read write follow";
 
+	#if WINDOWS
+		const bool should_auto_auth = false;
+	#else
+		const bool should_auto_auth = true;
+	#endif
+
 	protected bool is_working { get; set; default = false; }
 	protected string? redirect_uri { get; set; }
-	protected bool use_auto_auth { get; set; default = true; }
+	protected bool use_auto_auth { get; set; default = should_auto_auth; }
 	protected InstanceAccount account { get; set; default = new InstanceAccount.empty (""); }
 
 	[GtkChild] unowned Adw.NavigationView deck;
@@ -77,7 +83,7 @@ public class Tuba.Dialogs.NewAccount: Adw.Window {
 	void reset () {
 		debug ("Reset state");
 		clear_errors ();
-		use_auto_auth = true;
+		use_auto_auth = should_auto_auth;
 		account = new InstanceAccount.empty (account.instance);
 		deck.pop_to_page (instance_step);
 	}
